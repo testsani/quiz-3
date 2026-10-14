@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>속담 온(ON) - 고1 국어 어휘력 마스터 퀴즈 | GitHub Pages</title>
+  <meta name="description" content="GitHub Pages로 배포 가능한 고등학교 1학년 국어 필수 속담 4지 선다형 퀴즈 웹앱. 100점 만점 채점, 상세 오답 노트, 교사용 성적 대시보드 및 CSV 다운로드 제공.">
+  
+  <!-- Fonts: Pretendard & Inter -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Global Header (Airbnb Style) -->
+  <header class="airbnb-header">
+    <div class="header-inner">
+      <!-- Brand Logo -->
+      <div class="brand-logo" id="header-brand-btn" role="button" tabindex="0" title="홈으로 이동">
+        <svg class="airbnb-icon" viewBox="0 0 32 32" fill="currentColor">
+          <path d="M16 1c2.008 0 3.463.963 4.751 3.269l.533 1.025c1.954 3.83 6.114 12.54 7.1 14.836l.145.353c.667 1.591.91 2.479.96 3.396l.011.391c0 3.14-2.14 5.73-5.26 6.516l-.49.102c-2.316.425-4.577-.282-6.75-2.094-2.173 1.812-4.434 2.519-6.75 2.094l-.49-.102C6.64 30.002 4.5 27.412 4.5 24.272l.011-.391c.05-.917.293-1.805.96-3.396l.145-.353c.986-2.296 5.146-11.006 7.1-14.836l.533-1.025C14.537 1.963 15.992 1 16 1zm0 2c-1.232 0-2.253.593-3.238 2.37l-.488.941c-1.936 3.792-6.079 12.464-7.054 14.739l-.134.323c-.613 1.464-.828 2.222-.873 2.977l-.013.322c0 2.277 1.517 4.17 3.738 4.759l.37.08c1.88.353 3.722-.224 5.59-1.822l.533-.472.533.472c1.868 1.598 3.71 2.175 5.59 1.822l.37-.08c2.221-.589 3.738-2.482 3.738-4.759l-.013-.322c-.045-.755-.26-1.513-.873-2.977l-.134-.323c-.975-2.275-5.118-10.947-7.054-14.739l-.488-.941C18.253 3.593 17.232 3 16 3zm0 11.5c2.485 0 4.5 2.015 4.5 4.5 0 2.38-1.844 4.33-4.184 4.492l-.316.008c-2.485 0-4.5-2.015-4.5-4.5 0-2.38 1.844-4.33 4.184-4.492zm0 2c-1.381 0-2.5 1.119-2.5 2.5 0 1.32.997 2.408 2.298 2.494l.202.006c1.381 0 2.5-1.119 2.5-2.5 0-1.32-.997-2.408-2.298-2.494z"/>
+        </svg>
+        <span class="brand-text">속담 온<span>.</span></span>
+      </div>
+
+      <!-- Center Pill Search Bar -->
+      <div class="header-search-pill" id="header-search-pill">
+        <button class="search-pill-item active" type="button">고1 국어 필수 속담</button>
+        <span class="pill-divider"></span>
+        <button class="search-pill-item" type="button">5문항 챌린지</button>
+        <span class="pill-divider"></span>
+        <button class="search-pill-item text-muted-item" type="button">100점 만점 채점</button>
+        <div class="search-pill-orb">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="4">
+            <circle cx="14" cy="14" r="9"></circle>
+            <path d="M21 21l7 7"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Header Actions -->
+      <div class="header-right-actions">
+        <!-- Teacher Dashboard Access Button -->
+        <button id="teacher-mode-btn" class="airbnb-pill-btn teacher-nav-btn" type="button" title="교사용 대시보드 로그인">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <span id="teacher-btn-label">교사용 모드</span>
+        </button>
+
+        <!-- Sound Toggle -->
+        <button id="sound-toggle-btn" class="airbnb-pill-btn icon-only-pill" aria-label="효과음 켜기/끄기" title="효과음 토글">
+          <svg id="sound-icon-on" class="sound-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+          <svg id="sound-icon-off" class="sound-svg hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Active Linear Quiz Progress Bar -->
+    <div class="airbnb-progress-container">
+      <div id="progress-fill" class="airbnb-progress-fill" style="width: 0%;"></div>
+    </div>
+  </header>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Main Content Wrapper -->
+  <main class="airbnb-main-wrapper">
+
+    <!-- ====================================================================
+         1. STUDENT INTRO SCREEN (학생 식별번호 입력 및 랜딩)
+         ==================================================================== -->
+    <section id="intro-screen" class="screen-view active">
+      <div class="intro-experience-layout">
+        
+        <!-- Left Information Column -->
+        <div class="hero-left-col">
+          <div class="badge-tag">
+            <span class="rausch-dot"></span>
+            고등학교 1학년 국어 어휘력 인증 모의평가
+          </div>
+          <h1 class="airbnb-hero-title">
+            맥락으로 꿰뚫는<br>
+            <span class="rausch-text">고1 필수 속담 마스터</span>
+          </h1>
+          <p class="airbnb-hero-sub">
+            단순 암기가 아닌 실제 국어 지문 맥락 속에서 올바른 속담을 찾아내는 5문항 챌린지입니다.<br>
+            풀이 완료 후 즉시 100점 만점 성적표와 상세 오답 노트를 확인하고, 교사용 대시보드에서 학급 성적 통계를 관리할 수 있습니다.
+          </p>
+
+          <div class="airbnb-features-list">
+            <div class="feature-row">
+              <div class="feature-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+              </div>
+              <div class="feature-content">
+                <h4 class="feature-title">4지 선다형 5문항 집중 구성</h4>
+                <p class="feature-desc">상황 맥락 추론, 비유적 의미 파악, 태도 비판 등 고1 모의고사 핵심 유형 엄선</p>
+              </div>
+            </div>
+
+            <div class="feature-row">
+              <div class="feature-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="8" r="7"></circle>
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                </svg>
+              </div>
+              <div class="feature-content">
+                <h4 class="feature-title">100점 만점 즉시 채점</h4>
+                <p class="feature-desc">문항당 20점 배점으로 나의 어휘력 성취도를 명확하게 측정</p>
+              </div>
+            </div>
+
+            <div class="feature-row">
+              <div class="feature-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+              </div>
+              <div class="feature-content">
+                <h4 class="feature-title">상세 오답 노트 & 한자성어 연계</h4>
+                <p class="feature-desc">틀린 문제는 사전적 의미와 고1 교과 연계 한자성어(동족방뇨, 적반하장 등)로 완벽 복습</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Student Identification & Start Card -->
+        <div class="hero-right-col">
+          <div class="airbnb-booking-card">
+            <div class="booking-card-header">
+              <div class="price-wrap">
+                <span class="price-val">100점</span>
+                <span class="price-unit">/ 만점 평가</span>
+              </div>
+              <div class="booking-rating">
+                <span class="superhost-pill">실시간 자동 채점</span>
+              </div>
+            </div>
+
+            <!-- Student Identification Inputs -->
+            <div class="student-id-form-card">
+              <div class="form-title-wrap">
+                <span class="form-step-num">STEP 1</span>
+                <h3 class="form-title">학생 본인 확인</h3>
+              </div>
+              
+              <div class="form-input-group">
+                <label for="student-id-input" class="airbnb-input-label">학번 또는 학생 식별번호</label>
+                <div class="input-with-icon">
+                  <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <input type="text" id="student-id-input" class="airbnb-text-input" placeholder="예: 10101 (1학년 1반 1번)" maxlength="15" autocomplete="off">
+                </div>
+              </div>
+
+              <div class="form-input-group">
+                <label for="student-name-input" class="airbnb-input-label">학생 성명</label>
+                <div class="input-with-icon">
+                  <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <input type="text" id="student-name-input" class="airbnb-text-input" placeholder="예: 홍길동" maxlength="10" autocomplete="off">
+                </div>
+              </div>
+
+              <div id="student-input-error" class="form-error-msg hidden">학번과 이름을 올바르게 입력해 주세요.</div>
+            </div>
+
+            <!-- Start Button -->
+            <button id="start-quiz-btn" class="airbnb-rausch-btn" type="button">
+              <span>퀴즈 도전 시작하기</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+
+            <p class="booking-note">시작 버튼을 누르면 문제가 시작되며 소요 시간이 측정됩니다.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         2. STUDENT QUIZ VIEW (퀴즈 문제 풀이)
+         ==================================================================== -->
+    <section id="quiz-screen" class="screen-view">
+      
+      <!-- Sub Navigation Bar -->
+      <div class="quiz-sub-navbar">
+        <div class="student-active-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span id="active-student-display">10101 홍길동 학생 응시 중</span>
+        </div>
+
+        <div class="step-indicator-wrap">
+          <span class="step-label">문항</span>
+          <span id="current-q-num" class="step-current">01</span>
+          <span class="step-slash">/</span>
+          <span class="step-total">05</span>
+        </div>
+
+        <!-- Question Navigation Pills -->
+        <div id="question-navigator" class="airbnb-nav-pills"></div>
+
+        <div class="airbnb-timer-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span id="quiz-timer">00:00</span>
+        </div>
+      </div>
+
+      <!-- Main Question Container Card -->
+      <div class="airbnb-card question-main-card">
+        
+        <div class="question-header-row">
+          <div class="tag-group">
+            <span id="question-category" class="airbnb-chip">상황 맥락 추론</span>
+            <span class="points-chip">20점</span>
+          </div>
+          <span class="keyboard-guide">키보드 1~4번 또는 마우스 클릭</span>
+        </div>
+
+        <!-- Context Situation Box -->
+        <div class="airbnb-context-card">
+          <div class="quote-sign">“</div>
+          <p id="question-context" class="context-body"></p>
+        </div>
+
+        <!-- Question Prompt -->
+        <h2 id="question-prompt" class="question-title-text"></h2>
+
+        <!-- 4 Option Cards -->
+        <div class="airbnb-options-grid" id="options-container" role="radiogroup"></div>
+
+        <!-- Question Footer Controls -->
+        <div class="question-footer-row">
+          <button id="prev-question-btn" class="airbnb-outline-btn" type="button" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span>이전 문제</span>
+          </button>
+
+          <span id="option-hint-text" class="selection-status-text">보기를 선택해 주세요</span>
+
+          <button id="next-question-btn" class="airbnb-rausch-btn btn-compact" type="button">
+            <span id="next-btn-text">다음 문제</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ====================================================================
+         3. STUDENT RESULT & REVIEW VIEW (결과 및 오답 노트)
+         ==================================================================== -->
+    <section id="result-screen" class="screen-view">
+      
+      <!-- Score Overview Card -->
+      <div class="airbnb-card result-dashboard-card">
+        
+        <div class="sheets-success-banner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+          <span>평가 완료! 성적이 시스템에 안전하게 저장되었습니다.</span>
+        </div>
+
+        <div class="student-result-pill">
+          <span id="result-student-info">10101 홍길동 학생의 성적표</span>
+        </div>
+
+        <h2 id="result-tier-title" class="result-headline">속담 마스터!</h2>
+        <p id="result-tier-desc" class="result-sub-desc">국어 1등급의 탁월한 속담 이해력과 문맥 통찰력을 입증했습니다.</p>
+
+        <!-- Circular Score Visualizer -->
+        <div class="airbnb-score-circle-wrapper">
+          <div class="score-circle-inner">
+            <span id="score-counter" class="big-score-num">0</span>
+            <span class="score-denominator">/ 100점</span>
+          </div>
+          <svg class="airbnb-circle-svg" viewBox="0 0 120 120">
+            <circle class="circle-track" cx="60" cy="60" r="52"></circle>
+            <circle id="circle-score-fill" class="circle-progress" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="326.7"></circle>
+          </svg>
+        </div>
+
+        <!-- Metric Badges Row -->
+        <div class="airbnb-metrics-row">
+          <div class="metric-box">
+            <span class="metric-title">맞힌 문항</span>
+            <span id="stat-correct-count" class="metric-val text-rausch">0 / 5</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-title">정답률</span>
+            <span id="stat-accuracy" class="metric-val">0%</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-title">소요 시간</span>
+            <span id="stat-duration" class="metric-val">0초</span>
+          </div>
+        </div>
+
+        <!-- Result Action Buttons -->
+        <div class="result-cta-group">
+          <button id="retry-quiz-btn" class="airbnb-rausch-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="1 4 1 10 7 10"></polyline>
+              <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+            </svg>
+            <span>다시 도전하기</span>
+          </button>
+
+          <button id="share-score-btn" class="airbnb-outline-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+              <polyline points="16 6 12 2 8 6"></polyline>
+              <line x1="12" y1="2" x2="12" y2="15"></line>
+            </svg>
+            <span id="share-btn-text">성적표 복사하기</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Review & Wrong Answer Notes Section -->
+      <div class="airbnb-review-section">
+        
+        <div class="review-header-bar">
+          <div>
+            <h3 class="section-heading">문항별 상세 풀이 & 오답 노트</h3>
+            <p class="section-subtext">내가 선택한 답안과 정답을 비교하고, 속담의 사전적 의미와 한자성어를 복습하세요.</p>
+          </div>
+
+          <!-- Airbnb Category Pill Filter -->
+          <div class="airbnb-filter-pill-group">
+            <button id="filter-all-btn" class="filter-pill active" data-filter="all">전체 문제 (5)</button>
+            <button id="filter-wrong-btn" class="filter-pill" data-filter="wrong">
+              틀린 문제만 (<span id="wrong-count-badge">0</span>)
+            </button>
+          </div>
+        </div>
+
+        <!-- Review Cards Container -->
+        <div id="review-list" class="review-cards-container"></div>
+
+      </div>
+
+    </section>
+
+    <!-- ====================================================================
+         4. TEACHER DASHBOARD VIEW (교사용 대시보드 & 성적 통계 & CSV)
+         ==================================================================== -->
+    <section id="teacher-screen" class="screen-view">
+      
+      <!-- Top Action Bar for Teacher -->
+      <div class="teacher-toolbar">
+        <div class="teacher-title-wrap">
+          <span class="teacher-badge">교사용 관리자 모드</span>
+          <h2 class="teacher-page-title">속담 퀴즈 종합 통계 및 학생별 성적</h2>
+        </div>
+
+        <div class="teacher-actions">
+          <!-- CSV Download Button -->
+          <button id="download-csv-btn" class="airbnb-outline-btn btn-sm" type="button" title="엑셀 및 구글 시트에서 열 수 있는 CSV 파일로 다운로드">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>엑셀/CSV 다운로드</span>
+          </button>
+
+          <button id="generate-mock-btn" class="airbnb-pill-btn btn-sm text-rausch" type="button" title="10명의 가상 학생 데이터 자동 입력">
+            <span>가상 데이터 생성(10명)</span>
+          </button>
+
+          <button id="clear-records-btn" class="airbnb-pill-btn btn-sm text-muted" type="button" title="저장된 학생 성적 초기화">
+            <span>기록 초기화</span>
+          </button>
+
+          <button id="exit-teacher-btn" class="airbnb-outline-btn btn-sm" type="button">
+            <span>학생 화면으로</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Summary Metric Cards -->
+      <div class="teacher-kpi-grid">
+        <div class="kpi-card">
+          <span class="kpi-label">총 응시 인원</span>
+          <div class="kpi-value-row">
+            <span id="kpi-total-students" class="kpi-val">0</span>
+            <span class="kpi-unit">명</span>
+          </div>
+          <span class="kpi-hint">제출 완료 학생 수</span>
+        </div>
+
+        <div class="kpi-card">
+          <span class="kpi-label">학급 평균 점수</span>
+          <div class="kpi-value-row">
+            <span id="kpi-avg-score" class="kpi-val text-rausch">0.0</span>
+            <span class="kpi-unit">/ 100점</span>
+          </div>
+          <span class="kpi-hint">문항당 20점 배점 기준</span>
+        </div>
+
+        <div class="kpi-card">
+          <span class="kpi-label">최고 점수</span>
+          <div class="kpi-value-row">
+            <span id="kpi-max-score" class="kpi-val text-green">0</span>
+            <span class="kpi-unit">점</span>
+          </div>
+          <span class="kpi-hint">학급 내 1위 성적</span>
+        </div>
+
+        <div class="kpi-card">
+          <span class="kpi-label">최저 점수</span>
+          <div class="kpi-value-row">
+            <span id="kpi-min-score" class="kpi-val text-muted">0</span>
+            <span class="kpi-unit">점</span>
+          </div>
+          <span class="kpi-hint">취약 학생 보완 지도 필요</span>
+        </div>
+      </div>
+
+      <!-- Question Accuracy Analytics Section -->
+      <div class="airbnb-card teacher-section-card">
+        <div class="section-title-row">
+          <h3 class="section-card-title">문항별 정답률 및 취약 문항 분석</h3>
+          <span class="section-tag">고1 필수 속담 5문항</span>
+        </div>
+        
+        <div class="question-accuracy-list" id="question-accuracy-container"></div>
+      </div>
+
+      <!-- Student Submissions Table Section -->
+      <div class="airbnb-card teacher-section-card">
+        <div class="table-header-controls">
+          <div class="table-title-wrap">
+            <h3 class="section-card-title">학생별 제출 기록 및 오답 현황</h3>
+            <span id="table-count-label" class="sub-label">총 0건</span>
+          </div>
+
+          <div class="search-filter-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="teacher-search-input" placeholder="학번 또는 이름 검색..." autocomplete="off">
+          </div>
+        </div>
+
+        <div class="table-responsive-wrapper">
+          <table class="airbnb-data-table">
+            <thead>
+              <tr>
+                <th>제출 일시</th>
+                <th>학번(식별번호)</th>
+                <th>이름</th>
+                <th>총점</th>
+                <th>소요 시간</th>
+                <th class="text-center">1번</th>
+                <th class="text-center">2번</th>
+                <th class="text-center">3번</th>
+                <th class="text-center">4번</th>
+                <th class="text-center">5번</th>
+                <th class="text-center">상세</th>
+              </tr>
+            </thead>
+            <tbody id="student-table-body">
+              <tr>
+                <td colspan="11" class="text-center text-muted py-8">데이터가 아직 없습니다.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       TEACHER AUTHENTICATION MODAL (교사용 로그인 모달)
+       ==================================================================== -->
+  <div id="teacher-auth-modal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <span>교사 인증</span>
+        </div>
+        <button id="close-auth-modal-btn" class="modal-close-btn" type="button">&times;</button>
+      </div>
+
+      <h3 class="modal-title">교사용 대시보드 로그인</h3>
+      <p class="modal-desc">학생 평가 결과와 통계 데이터는 교사 인증을 거친 사용자만 접근할 수 있습니다.</p>
+
+      <div class="form-input-group mt-4">
+        <label for="teacher-passcode-input" class="airbnb-input-label">교사용 인증 암호</label>
+        <input type="password" id="teacher-passcode-input" class="airbnb-text-input" placeholder="인증 암호를 입력하세요 (기본: teacher2026!)" autocomplete="current-password">
+      </div>
+
+      <div id="teacher-auth-error" class="form-error-msg hidden">인증 암호가 올바르지 않습니다.</div>
+
+      <div class="modal-actions mt-6">
+        <button id="cancel-auth-btn" class="airbnb-outline-btn" type="button">취소</button>
+        <button id="submit-auth-btn" class="airbnb-rausch-btn" type="button">인증 및 접속</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       STUDENT DETAIL MODAL (특정 학생 상세 답안 팝업)
+       ==================================================================== -->
+  <div id="student-detail-modal" class="modal-backdrop hidden">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <div class="modal-badge">
+          <span>학생 답안 상세 분석</span>
+        </div>
+        <button id="close-student-detail-btn" class="modal-close-btn" type="button">&times;</button>
+      </div>
+
+      <div class="student-meta-header">
+        <div>
+          <h3 id="modal-student-name" class="modal-title">10101 홍길동 학생</h3>
+          <p id="modal-student-meta" class="modal-desc">제출 시각: 2026-10-15 14:30 | 소요 시간: 1분 15초</p>
+        </div>
+        <div class="student-score-badge">
+          <span id="modal-student-score" class="score-lg">80</span>
+          <span class="score-sub">/ 100점</span>
+        </div>
+      </div>
+
+      <div id="modal-question-answers-list" class="modal-answers-container"></div>
+
+      <div class="modal-actions mt-4">
+        <button id="close-student-detail-btn-bottom" class="airbnb-outline-btn" type="button">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="airbnb-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span>© 2026 속담 온(ON)</span>
+        <span class="footer-dot">·</span>
+        <span>GitHub Pages 배포 웹앱</span>
+        <span class="footer-dot">·</span>
+        <span>고등학교 1학년 국어 어휘력 프로젝트</span>
+      </div>
+      <div class="footer-right">
+        <span>한국어 (KR)</span>
+        <span class="footer-dot">·</span>
+        <span>100점 만점 모의평가</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="airbnb-toast hidden"></div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1819 @@
+/* ==========================================================================
+   속담 온(ON) - GitHub Pages 배포용 Airbnb 디자인 시스템 스타일시트
+   ========================================================================== */
+
+:root {
+  /* Airbnb Core Brand Tokens */
+  --airbnb-rausch: #FF385C;
+  --airbnb-rausch-hover: #E00B41;
+  --airbnb-rausch-gradient: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  --airbnb-rausch-subtle: #FFF8F9;
+
+  --color-ink: #222222;
+  --color-body: #484848;
+  --color-muted: #717171;
+  --color-hairline: #EBEBEB;
+  --color-border: #DDDDDD;
+  --color-border-dark: #222222;
+
+  --color-bg-white: #FFFFFF;
+  --color-bg-soft: #F7F7F7;
+  --color-bg-hover: #F1F1F1;
+
+  --color-success: #008489;
+  --color-success-bg: #E6F7F7;
+  --color-danger: #E00B41;
+  --color-danger-bg: #FEECEF;
+  --color-warning: #B45309;
+  --color-warning-bg: #FEF3C7;
+
+  /* Typography */
+  --font-sans: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-card: 0 6px 16px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-pill: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-pill-hover: 0 2px 4px rgba(0, 0, 0, 0.12), 0 6px 16px rgba(0, 0, 0, 0.08);
+  --shadow-modal: 0 20px 48px rgba(0, 0, 0, 0.2);
+
+  /* Radius */
+  --radius-pill: 9999px;
+  --radius-card: 16px;
+  --radius-lg: 20px;
+  --radius-sm: 8px;
+
+  /* Transitions */
+  --ease-airbnb: cubic-bezier(0.2, 0, 0, 1);
+  --trans-fast: 0.2s var(--ease-airbnb);
+  --trans-medium: 0.3s var(--ease-airbnb);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg-white);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Confetti Canvas */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* --------------------------------------------------------------------------
+   GLOBAL HEADER
+   -------------------------------------------------------------------------- */
+.airbnb-header {
+  position: sticky;
+  top: 0;
+  background-color: var(--color-bg-white);
+  border-bottom: 1px solid var(--color-hairline);
+  z-index: 100;
+  transition: all var(--trans-fast);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  gap: 16px;
+}
+
+/* Brand Logo */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--airbnb-rausch);
+  cursor: pointer;
+  user-select: none;
+}
+
+.airbnb-icon {
+  width: 34px;
+  height: 34px;
+}
+
+.brand-text {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--airbnb-rausch);
+}
+
+.brand-text span {
+  color: var(--color-ink);
+}
+
+/* Center Search Pill Bar */
+.header-search-pill {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-pill);
+  padding: 8px 8px 8px 18px;
+  transition: box-shadow var(--trans-fast), transform var(--trans-fast);
+  cursor: pointer;
+}
+
+.header-search-pill:hover {
+  box-shadow: var(--shadow-pill-hover);
+}
+
+.search-pill-item {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-ink);
+  cursor: pointer;
+  padding: 0 8px;
+  white-space: nowrap;
+}
+
+.search-pill-item.text-muted-item {
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.pill-divider {
+  width: 1px;
+  height: 18px;
+  background-color: var(--color-hairline);
+  margin: 0 4px;
+}
+
+.search-pill-orb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--airbnb-rausch);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+}
+
+.search-pill-orb svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Header Right Actions */
+.header-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.airbnb-pill-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: all var(--trans-fast);
+  text-decoration: none;
+}
+
+.airbnb-pill-btn:hover {
+  background-color: var(--color-bg-soft);
+  border-color: var(--color-border-dark);
+}
+
+.airbnb-pill-btn.icon-only-pill {
+  padding: 7px 10px;
+}
+
+.teacher-nav-btn {
+  color: var(--color-ink);
+  background-color: var(--color-bg-soft);
+}
+
+.teacher-nav-btn svg {
+  width: 16px;
+  height: 16px;
+  color: var(--airbnb-rausch);
+}
+
+.sound-svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-body);
+}
+
+.sound-svg.hidden {
+  display: none;
+}
+
+/* Linear Red Progress Bar */
+.airbnb-progress-container {
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-hairline);
+  position: relative;
+  overflow: hidden;
+}
+
+.airbnb-progress-fill {
+  height: 100%;
+  background: var(--airbnb-rausch-gradient);
+  transition: width 0.35s ease;
+}
+
+/* --------------------------------------------------------------------------
+   MAIN LAYOUT & SCREENS
+   -------------------------------------------------------------------------- */
+.airbnb-main-wrapper {
+  max-width: 1140px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 40px 24px 60px;
+  flex: 1;
+}
+
+.screen-view {
+  display: none;
+  animation: airbnbFadeIn 0.35s ease forwards;
+}
+
+.screen-view.active {
+  display: block;
+}
+
+@keyframes airbnbFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base Card & Buttons */
+.airbnb-card {
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 36px;
+  transition: box-shadow var(--trans-fast);
+}
+
+.airbnb-rausch-btn {
+  background: var(--airbnb-rausch-gradient);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 28px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform var(--trans-fast), opacity var(--trans-fast);
+  text-decoration: none;
+  user-select: none;
+}
+
+.airbnb-rausch-btn:hover {
+  opacity: 0.94;
+}
+
+.airbnb-rausch-btn:active {
+  transform: scale(0.97);
+}
+
+.airbnb-rausch-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.airbnb-rausch-btn.btn-compact {
+  padding: 12px 24px;
+}
+
+.airbnb-outline-btn {
+  background-color: var(--color-bg-white);
+  color: var(--color-ink);
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 22px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--trans-fast);
+  text-decoration: none;
+}
+
+.airbnb-outline-btn:hover:not(:disabled) {
+  background-color: var(--color-bg-soft);
+}
+
+.airbnb-outline-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.airbnb-outline-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  border-color: var(--color-border);
+}
+
+.airbnb-outline-btn.btn-sm,
+.airbnb-pill-btn.btn-sm {
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+.airbnb-outline-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   1. STUDENT INTRO & IDENTIFICATION FORM
+   -------------------------------------------------------------------------- */
+.intro-experience-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 48px;
+  align-items: flex-start;
+  padding: 16px 0;
+}
+
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-hairline);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-body);
+  margin-bottom: 20px;
+}
+
+.rausch-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--airbnb-rausch);
+}
+
+.airbnb-hero-title {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  margin-bottom: 16px;
+}
+
+.rausch-text {
+  color: var(--airbnb-rausch);
+}
+
+.airbnb-hero-sub {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-muted);
+  margin-bottom: 32px;
+  word-break: keep-all;
+}
+
+.airbnb-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  border-top: 1px solid var(--color-hairline);
+  padding-top: 28px;
+}
+
+.feature-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.feature-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ink);
+  flex-shrink: 0;
+}
+
+.feature-icon-wrap svg {
+  width: 20px;
+  height: 20px;
+}
+
+.feature-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 3px;
+}
+
+.feature-desc {
+  font-size: 13.5px;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+/* Right Column Booking & ID Card */
+.airbnb-booking-card {
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 30px;
+  position: sticky;
+  top: 104px;
+}
+
+.booking-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 20px;
+}
+
+.price-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.price-val {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.price-unit {
+  font-size: 14px;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.superhost-pill {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--airbnb-rausch);
+  background-color: var(--airbnb-rausch-subtle);
+  border: 1px solid rgba(255, 56, 92, 0.25);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+/* Student Identification Form */
+.student-id-form-card {
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-hairline);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.form-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.form-step-num {
+  font-size: 11px;
+  font-weight: 800;
+  background-color: var(--color-ink);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.form-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.form-input-group {
+  margin-bottom: 14px;
+}
+
+.airbnb-input-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-body);
+  margin-bottom: 6px;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  color: var(--color-muted);
+  pointer-events: none;
+}
+
+.airbnb-text-input {
+  width: 100%;
+  background-color: var(--color-bg-white);
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  padding: 12px 14px 12px 42px;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--color-ink);
+  outline: none;
+  transition: all var(--trans-fast);
+}
+
+.airbnb-text-input:focus {
+  border-color: var(--color-border-dark);
+  box-shadow: 0 0 0 1px var(--color-border-dark);
+}
+
+.form-error-msg {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-danger);
+  margin-top: 6px;
+}
+
+.form-error-msg.hidden {
+  display: none;
+}
+
+.airbnb-booking-card .airbnb-rausch-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.booking-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+/* --------------------------------------------------------------------------
+   2. QUIZ SCREEN
+   -------------------------------------------------------------------------- */
+.quiz-sub-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.student-active-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-hairline);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.student-active-chip svg {
+  width: 15px;
+  height: 15px;
+  color: var(--airbnb-rausch);
+}
+
+.step-indicator-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.step-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-muted);
+  margin-right: 4px;
+}
+
+.step-current {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-ink);
+  line-height: 1;
+}
+
+.step-slash {
+  font-size: 16px;
+  color: var(--color-border);
+}
+
+.step-total {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.airbnb-nav-pills {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-pill-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-white);
+  color: var(--color-body);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--trans-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-pill-btn:hover {
+  border-color: var(--color-border-dark);
+  background-color: var(--color-bg-soft);
+}
+
+.nav-pill-btn.active {
+  background-color: var(--color-ink);
+  border-color: var(--color-ink);
+  color: #fff;
+}
+
+.nav-pill-btn.answered:not(.active) {
+  border-color: var(--airbnb-rausch);
+  color: var(--airbnb-rausch);
+  background-color: var(--airbnb-rausch-subtle);
+}
+
+.airbnb-timer-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-hairline);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.airbnb-timer-pill svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-muted);
+}
+
+/* Question Main Card */
+.question-main-card {
+  padding: 40px;
+}
+
+.question-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tag-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.airbnb-chip {
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-hairline);
+  color: var(--color-ink);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.points-chip {
+  background-color: var(--airbnb-rausch-subtle);
+  border: 1px solid rgba(255, 56, 92, 0.2);
+  color: var(--airbnb-rausch);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.keyboard-guide {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.airbnb-context-card {
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-hairline);
+  border-radius: 14px;
+  padding: 24px 28px 24px 44px;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.quote-sign {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  font-size: 32px;
+  line-height: 1;
+  font-family: Georgia, serif;
+  color: var(--airbnb-rausch);
+  opacity: 0.6;
+}
+
+.context-body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--color-body);
+  word-break: keep-all;
+}
+
+.question-title-text {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.4;
+  color: var(--color-ink);
+  margin-bottom: 24px;
+  word-break: keep-all;
+}
+
+/* 4 Options */
+.airbnb-options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.option-btn {
+  background-color: var(--color-bg-white);
+  border: 1.5px solid var(--color-border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all var(--trans-fast);
+  text-align: left;
+  font-family: inherit;
+  color: var(--color-ink);
+}
+
+.option-btn:hover {
+  border-color: var(--color-border-dark);
+  background-color: var(--color-bg-soft);
+}
+
+.option-num-badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-border);
+  background-color: var(--color-bg-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-body);
+  flex-shrink: 0;
+  transition: all var(--trans-fast);
+}
+
+.option-text {
+  font-size: 16px;
+  font-weight: 600;
+  flex: 1;
+  word-break: keep-all;
+}
+
+.option-btn.selected {
+  border-color: var(--airbnb-rausch);
+  background-color: var(--airbnb-rausch-subtle);
+}
+
+.option-btn.selected .option-num-badge {
+  background-color: var(--airbnb-rausch);
+  border-color: var(--airbnb-rausch);
+  color: #fff;
+}
+
+.question-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--color-hairline);
+  padding-top: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.selection-status-text {
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/* --------------------------------------------------------------------------
+   3. RESULT & REVIEW VIEW
+   -------------------------------------------------------------------------- */
+.result-dashboard-card {
+  text-align: center;
+  padding: 44px 32px;
+  margin-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sheets-success-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+  border: 1px solid rgba(0, 132, 137, 0.3);
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.student-result-pill {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-muted);
+  margin-bottom: 8px;
+}
+
+.result-headline {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin-bottom: 8px;
+}
+
+.result-sub-desc {
+  font-size: 16px;
+  color: var(--color-muted);
+  max-width: 540px;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.airbnb-score-circle-wrapper {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  margin-bottom: 28px;
+}
+
+.airbnb-circle-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.circle-track {
+  fill: none;
+  stroke: var(--color-bg-soft);
+  stroke-width: 8;
+}
+
+.circle-progress {
+  fill: none;
+  stroke: var(--airbnb-rausch);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.4s cubic-bezier(0.2, 0, 0, 1), stroke 0.3s ease;
+}
+
+.score-circle-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.big-score-num {
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--color-ink);
+}
+
+.score-denominator {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-muted);
+  margin-top: 4px;
+}
+
+.airbnb-metrics-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 580px;
+  margin-bottom: 32px;
+}
+
+.metric-box {
+  flex: 1;
+  min-width: 140px;
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-hairline);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.metric-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.metric-val {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.text-rausch {
+  color: var(--airbnb-rausch);
+}
+
+.text-green {
+  color: var(--color-success);
+}
+
+.result-cta-group {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Review Section */
+.airbnb-review-section {
+  padding-top: 16px;
+}
+
+.review-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--color-hairline);
+  padding-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.section-heading {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-ink);
+  margin-bottom: 4px;
+}
+
+.section-subtext {
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.airbnb-filter-pill-group {
+  display: flex;
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+  gap: 4px;
+}
+
+.filter-pill {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-body);
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--trans-fast);
+}
+
+.filter-pill.active {
+  background-color: var(--color-ink);
+  color: #fff;
+}
+
+.review-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-item-card {
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 26px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--trans-fast);
+}
+
+.review-item-card.is-correct {
+  border-left: 5px solid var(--color-success);
+}
+
+.review-item-card.is-wrong {
+  border-left: 5px solid var(--airbnb-rausch);
+}
+
+.item-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.item-num-tag {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.status-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-badge.correct {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.status-badge.wrong {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.item-context-quote {
+  background-color: var(--color-bg-soft);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 14px;
+  color: var(--color-body);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.item-prompt {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--color-ink);
+  margin-bottom: 16px;
+}
+
+.answers-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.answer-box {
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.answer-box.user-choice {
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-hairline);
+}
+
+.answer-box.user-choice.wrong-choice {
+  background-color: var(--color-danger-bg);
+  border-color: rgba(224, 11, 65, 0.25);
+}
+
+.answer-box.correct-choice {
+  background-color: var(--color-success-bg);
+  border: 1px solid rgba(0, 132, 137, 0.25);
+}
+
+.ans-tag {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.answer-box.user-choice.wrong-choice .ans-tag {
+  color: var(--color-danger);
+}
+
+.answer-box.correct-choice .ans-tag {
+  color: var(--color-success);
+}
+
+.ans-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.item-explanation-box {
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-hairline);
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+.exp-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-ink);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.exp-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--color-body);
+  margin-bottom: 10px;
+}
+
+.exp-tip {
+  font-size: 13px;
+  color: #0369a1;
+  background-color: #f0f9ff;
+  border: 1px solid #bae6fd;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   4. TEACHER DASHBOARD STYLES
+   -------------------------------------------------------------------------- */
+.teacher-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.teacher-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--airbnb-rausch);
+  background-color: var(--airbnb-rausch-subtle);
+  border: 1px solid rgba(255, 56, 92, 0.25);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 6px;
+}
+
+.teacher-page-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
+}
+
+.teacher-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Teacher KPI Grid */
+.teacher-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.kpi-card {
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 22px 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 6px;
+}
+
+.kpi-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.kpi-val {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--color-ink);
+  line-height: 1;
+}
+
+.kpi-unit {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.kpi-hint {
+  font-size: 11.5px;
+  color: var(--color-muted);
+}
+
+/* Teacher Section Card */
+.teacher-section-card {
+  margin-bottom: 28px;
+  padding: 28px;
+}
+
+.section-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-card-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.section-tag {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-muted);
+  background-color: var(--color-bg-soft);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+/* Question Accuracy Bars */
+.question-accuracy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.accuracy-item-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.accuracy-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.q-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.q-num-chip {
+  font-size: 11px;
+  font-weight: 800;
+  background-color: var(--color-ink);
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.q-prompt-short {
+  font-weight: 600;
+  color: var(--color-body);
+}
+
+.q-rate-val {
+  font-weight: 800;
+}
+
+.q-rate-val.rate-high { color: var(--color-success); }
+.q-rate-val.rate-mid { color: var(--color-warning); }
+.q-rate-val.rate-low { color: var(--color-danger); }
+
+.accuracy-bar-track {
+  width: 100%;
+  height: 10px;
+  background-color: var(--color-bg-soft);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.accuracy-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  transition: width 0.8s ease;
+}
+
+.accuracy-bar-fill.bar-high { background-color: var(--color-success); }
+.accuracy-bar-fill.bar-mid { background-color: #F59E0B; }
+.accuracy-bar-fill.bar-low { background-color: var(--airbnb-rausch); }
+
+/* Table Header Controls */
+.table-header-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.table-title-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.sub-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.search-filter-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 8px 16px;
+  width: 240px;
+}
+
+.search-filter-box svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-muted);
+}
+
+.search-filter-box input {
+  border: none;
+  background: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--color-ink);
+  width: 100%;
+}
+
+/* Data Table */
+.table-responsive-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.airbnb-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  text-align: left;
+}
+
+.airbnb-data-table th {
+  background-color: var(--color-bg-soft);
+  color: var(--color-muted);
+  font-weight: 700;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.airbnb-data-table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--color-hairline);
+  color: var(--color-body);
+  vertical-align: middle;
+}
+
+.airbnb-data-table tbody tr:hover {
+  background-color: var(--color-bg-soft);
+}
+
+.ox-badge {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.ox-badge.badge-o {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.ox-badge.badge-x {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.view-detail-btn {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: all var(--trans-fast);
+}
+
+.view-detail-btn:hover {
+  border-color: var(--color-border-dark);
+  background-color: var(--color-bg-white);
+}
+
+/* Modals */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-backdrop.hidden {
+  display: none;
+}
+
+.modal-card {
+  background-color: var(--color-bg-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-modal);
+  width: 100%;
+  max-width: 440px;
+  padding: 32px;
+  animation: airbnbFadeIn 0.25s ease forwards;
+}
+
+.modal-card.modal-lg {
+  max-width: 680px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modal-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--airbnb-rausch);
+  background-color: var(--airbnb-rausch-subtle);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.modal-badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+.modal-close-btn:hover {
+  color: var(--color-ink);
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-ink);
+  margin-bottom: 6px;
+}
+
+.modal-desc {
+  font-size: 13.5px;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Student Detail Modal Specific */
+.student-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-hairline);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.student-score-badge {
+  background-color: var(--airbnb-rausch-subtle);
+  border: 1px solid rgba(255, 56, 92, 0.25);
+  border-radius: 12px;
+  padding: 8px 16px;
+  text-align: center;
+}
+
+.score-lg {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--airbnb-rausch);
+}
+
+.score-sub {
+  font-size: 12px;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.modal-answers-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-answer-item {
+  background-color: var(--color-bg-soft);
+  border-radius: 12px;
+  padding: 16px 20px;
+  border-left: 4px solid var(--color-border);
+}
+
+.modal-answer-item.correct { border-left-color: var(--color-success); }
+.modal-answer-item.wrong { border-left-color: var(--airbnb-rausch); }
+
+.item-q-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.item-q-prompt {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 8px;
+}
+
+.item-choices-comparison {
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Empty filter state */
+.empty-filter-state {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--color-muted);
+  background-color: var(--color-bg-soft);
+  border-radius: var(--radius-card);
+}
+
+.empty-filter-state svg {
+  width: 44px;
+  height: 44px;
+  color: var(--color-success);
+  margin-bottom: 12px;
+}
+
+/* Toast */
+.airbnb-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  background-color: var(--color-ink);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: var(--shadow-card);
+  z-index: 3000;
+  transition: all 0.25s ease;
+}
+
+.airbnb-toast.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  pointer-events: none;
+}
+
+/* Footer */
+.airbnb-footer {
+  border-top: 1px solid var(--color-hairline);
+  background-color: var(--color-bg-soft);
+  padding: 24px 0;
+  margin-top: auto;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13.5px;
+  color: var(--color-muted);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-left, .footer-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-dot {
+  color: var(--color-border);
+}
+
+.text-center { text-align: center; }
+.mt-4 { margin-top: 16px; }
+.mt-6 { margin-top: 24px; }
+.py-8 { padding-top: 32px; padding-bottom: 32px; }
+
+/* Responsive Queries */
+@media (max-width: 960px) {
+  .header-search-pill { display: none; }
+  .intro-experience-layout { grid-template-columns: 1fr; gap: 32px; }
+  .airbnb-hero-title { font-size: 30px; }
+  .airbnb-booking-card { position: static; }
+  .teacher-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .question-main-card { padding: 24px 20px; }
+  .answers-comparison { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .teacher-kpi-grid { grid-template-columns: 1fr; }
+  .search-filter-box { width: 100%; }
+}
